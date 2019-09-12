@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public class BoatNavAgent : MonoBehaviour
 {
     NavMeshAgent agent;
+    public float v;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,12 +23,15 @@ public class BoatNavAgent : MonoBehaviour
             }
         }
         if (agent.hasPath) {
+            v = agent.velocity.magnitude;
             // get angle between the next straight line and direction
-            float angleToTurn = Vector3.Angle(agent.steeringTarget - this.transform.position, this.transform.forward);
-            if (angleToTurn > 1) {
-                float angleSlowRatio = (Mathf.Cos(angleToTurn*Mathf.PI/180) + 1)/2;
-                // move forward with current velocity reduced by angle difference
-                agent.Move(this.transform.forward * agent.velocity.magnitude * angleSlowRatio);
+            float angleToTurn = Vector3.SignedAngle(agent.steeringTarget - this.transform.position, this.transform.forward, Vector3.up);
+            if (Mathf.Abs(angleToTurn) > 40 && agent.velocity.magnitude < 1) {
+                agent.isStopped = true;
+                this.transform.Rotate(0, agent.angularSpeed * Time.deltaTime * -Mathf.Sign(angleToTurn), 0);
+                agent.Move(this.transform.forward * (agent.speed * Time.deltaTime / 10));
+            } else {
+                agent.isStopped = false;
             }
         }
     }
