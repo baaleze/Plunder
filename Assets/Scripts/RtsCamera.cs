@@ -8,6 +8,8 @@ public class RtsCamera : MonoBehaviour
 {
     public float ScreenEdgeBorderThickness = 5.0f; // distance from screen edge. Used for mouse movement
 
+    public GameObject player;
+
     [Header("Camera Mode")]
     [Space]
     public bool RTSMode = true;
@@ -20,39 +22,17 @@ public class RtsCamera : MonoBehaviour
     public float secToMaxSpeed; //seconds taken to reach max speed;
     public float zoomSpeed;
 
-    [Header("Movement Limits")]
-    [Space]
-    public bool enableMovementLimits;
-    public Vector2 heightLimit;
-    public Vector2 lenghtLimit;
-    public Vector2 widthLimit;
-    private Vector2 zoomLimit;
 
+    private float height = 50f;
     private float panSpeed;
-    private Vector3 initialPos;
     private Vector3 panMovement;
-    private Vector3 pos;
-    private Quaternion rot;
-    private bool rotationActive = false;
-    private Vector3 lastMousePosition;
-    private Quaternion initialRot;
     private float panIncrease = 0.0f;
-
-    [Header("Rotation")]
-    [Space]
-    public bool rotationEnabled;
-    public float rotateSpeed;
-
-
 
 
 
     // Use this for initialization
     void Start () {
-        initialPos = transform.position;
-        initialRot = transform.rotation;
-        zoomLimit.x = 15;
-        zoomLimit.y = 65;
+        ReCenter();
 	}
 	
 	
@@ -120,72 +100,19 @@ public class RtsCamera : MonoBehaviour
 
         #endregion
 
-        #region Zoom
-
-        Camera.main.fieldOfView -= Input.mouseScrollDelta.y * zoomSpeed;
-        Camera.main.fieldOfView = Mathf.Clamp(Camera.main.fieldOfView,zoomLimit.x,zoomLimit.y);
-
-        #endregion
-
-        #region mouse rotation
-
-        if (rotationEnabled)
-        {
-            // Mouse Rotation
-            if (Input.GetMouseButton(0))
-            {
-                rotationActive = true;
-                Vector3 mouseDelta;
-                if (lastMousePosition.x >= 0 &&
-                    lastMousePosition.y >= 0 &&
-                    lastMousePosition.x <= Screen.width &&
-                    lastMousePosition.y <= Screen.height)
-                    mouseDelta = Input.mousePosition - lastMousePosition;
-                else
-                {
-                    mouseDelta = Vector3.zero;
-                }
-                var rotation = Vector3.up * Time.deltaTime * rotateSpeed * mouseDelta.x;
-                rotation += Vector3.left * Time.deltaTime * rotateSpeed * mouseDelta.y;
-
-                transform.Rotate(rotation, Space.World);
-
-                // Make sure z rotation stays locked
-                rotation = transform.rotation.eulerAngles;
-                rotation.z = 0;
-                transform.rotation = Quaternion.Euler(rotation);
-            }
-
-            if (Input.GetMouseButtonUp(0))
-            {
-                rotationActive = false;
-                if (RTSMode) transform.rotation = Quaternion.Slerp(transform.rotation, initialRot, 0.5f * Time.time);
-            }
-
-            lastMousePosition = Input.mousePosition;
-
+        #region recenter
+        if (Input.GetKey(KeyCode.Space)) {
+            this.ReCenter();
         }
 
-
         #endregion
 
+    }
 
-        #region boundaries
-
-        if (enableMovementLimits == true)
-        {
-            //movement limits
-            pos = transform.position;
-            pos.y = Mathf.Clamp(pos.y, heightLimit.x, heightLimit.y);
-            pos.z = Mathf.Clamp(pos.z, lenghtLimit.x, lenghtLimit.y);
-            pos.x = Mathf.Clamp(pos.x, widthLimit.x, widthLimit.y);
-            transform.position = pos;
+    void ReCenter() {
+        if (player != null) {
+            this.transform.position.Set(player.transform.position.x, player.transform.position.y + this.height, player.transform.position.z);
         }
-        
-
-
-        #endregion
-
     }
 
 }
