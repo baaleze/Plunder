@@ -23,7 +23,7 @@ public class RtsCamera : MonoBehaviour
     public float zoomSpeed;
 
 
-    private float height = 50f;
+    private float height = 500f;
     private float panSpeed;
     private Vector3 panMovement;
     private float panIncrease = 0.0f;
@@ -111,7 +111,10 @@ public class RtsCamera : MonoBehaviour
 
     void ReCenter() {
         if (player != null) {
-            this.transform.position.Set(player.transform.position.x, player.transform.position.y + this.height, player.transform.position.z);
+            transform.position = new Vector3(
+                player.transform.position.x,
+                transform.position.y,
+                player.transform.position.z - transform.position.y * Mathf.Tan(Mathf.PI/8));
         }
     }
 
