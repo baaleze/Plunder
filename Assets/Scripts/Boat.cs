@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class Boat : MonoBehaviour
 {
-
-    public List<City> citiesInRange = new List<City>();
     public Canvas canvas;
+    public List<City> citiesInRange = new List<City>();
     private UiManager uiManager;
 
     // Start is called before the first frame update
@@ -30,14 +29,14 @@ public class Boat : MonoBehaviour
     public void addCityInRange(City city) {
         if (!citiesInRange.Contains(city)) {
             citiesInRange.Add(city);
-            uiManager.updateCityInRange(city.cityName);
+            uiManager?.updateCityInRange(city.GetName());
         }
     }
 
     public void removeCityInRange(City city) {
         if (citiesInRange.Contains(city)) {
             citiesInRange.Remove(city);
-            uiManager.updateCityInRange("");
+            uiManager?.updateCityInRange("");
         }
     }
 

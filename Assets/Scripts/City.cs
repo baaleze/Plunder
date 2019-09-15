@@ -1,24 +1,37 @@
-﻿using System;
+﻿
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class City : MonoBehaviour
 {
-    public Canvas canvas;
+    
+    public static List<City> allCities = new List<City>();
     private UiManager uiManager;
 
-    public string cityName;
-    public int gold;
-    public int spices;
-    public int silk;
-    public int food;
-    public int ore;
+    private string[] possibleNames = {"Port Royal", "La Barbade", "Grenade", "Port Louis", "L'ile de la Tortue"};
+    private string cityName;
+    private int gold;
+    private int spices;
+    private int silk;
+    private int food;
+    private int ore;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        uiManager = canvas.GetComponent<UiManager>();
+        uiManager = GameObject.Find("Canvas").GetComponent<UiManager>();
+        cityName = possibleNames[Random.Range(0, possibleNames.Length)];
+        gold = Random.Range(0,5) * 100;
+        spices = Random.Range(0,5) * 100;
+        silk = Random.Range(0,5) * 100;
+        food = Random.Range(0,5) * 100;
+        ore = Random.Range(0,5) * 100;
+        allCities.Add(this);
+    }
+
+    public string GetName() {
+        return cityName;
     }
 
     
