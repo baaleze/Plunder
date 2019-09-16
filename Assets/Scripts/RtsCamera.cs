@@ -6,7 +6,6 @@ using UnityEngine;
 
 public class RtsCamera : MonoBehaviour
 {
-    public float ScreenEdgeBorderThickness = 5.0f; // distance from screen edge. Used for mouse movement
 
     public GameObject player;
 
@@ -20,10 +19,8 @@ public class RtsCamera : MonoBehaviour
     public float minPanSpeed;
     public float maxPanSpeed;
     public float secToMaxSpeed; //seconds taken to reach max speed;
-    public float zoomSpeed;
 
 
-    private float height = 500f;
     private float panSpeed;
     private Vector3 panMovement;
     private float panIncrease = 0.0f;
@@ -50,30 +47,22 @@ public class RtsCamera : MonoBehaviour
 
             panMovement = Vector3.zero;
 
-            if (Input.GetKey(KeyCode.Z) || Input.mousePosition.y >= Screen.height - ScreenEdgeBorderThickness)
+            if (Input.GetKey(KeyCode.Z) )
             {
                 panMovement += Vector3.forward * panSpeed * Time.deltaTime;
             }
-            if (Input.GetKey(KeyCode.S) || Input.mousePosition.y <= ScreenEdgeBorderThickness)
+            if (Input.GetKey(KeyCode.S))
             {
                 panMovement -= Vector3.forward * panSpeed * Time.deltaTime;
             }
-            if (Input.GetKey(KeyCode.Q) || Input.mousePosition.x <= ScreenEdgeBorderThickness)
+            if (Input.GetKey(KeyCode.Q))
             {
                 panMovement += Vector3.left * panSpeed * Time.deltaTime;
             }
-            if (Input.GetKey(KeyCode.D) || Input.mousePosition.x >= Screen.width - ScreenEdgeBorderThickness)
+            if (Input.GetKey(KeyCode.D))
             {
                 panMovement += Vector3.right * panSpeed * Time.deltaTime;
                 //pos.x += panSpeed * Time.deltaTime;
-            }
-            if (Input.GetKey(KeyCode.A))
-            {
-                panMovement += Vector3.up * panSpeed * Time.deltaTime;
-            }
-            if (Input.GetKey(KeyCode.E))
-            {
-                panMovement += Vector3.down * panSpeed * Time.deltaTime;
             }
 
             if(RTSMode) transform.Translate(panMovement, Space.World);
@@ -82,12 +71,7 @@ public class RtsCamera : MonoBehaviour
 
         //increase pan speed
         if (Input.GetKey(KeyCode.Z) || Input.GetKey(KeyCode.S) 
-            || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D)
-            || Input.GetKey(KeyCode.E) || Input.GetKey(KeyCode.Q)
-            || Input.mousePosition.y >= Screen.height - ScreenEdgeBorderThickness
-            || Input.mousePosition.y <= ScreenEdgeBorderThickness
-            || Input.mousePosition.x <= ScreenEdgeBorderThickness
-            || Input.mousePosition.x >= Screen.width - ScreenEdgeBorderThickness)
+            || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.Q))
         {
             panIncrease += Time.deltaTime / secToMaxSpeed;
             panSpeed = Mathf.Lerp(minPanSpeed, maxPanSpeed, panIncrease);

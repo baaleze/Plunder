@@ -29,12 +29,12 @@ public class BoatNpc : Boat
             currentTarget = city1;
             navAgent.GoToCity(city1);
         }
-        if (citiesInRange.Count > 0) {
+        if (cityInRange != null) {
             // a city is in range, swap!
-            if (citiesInRange[0] == city1 && currentTarget == city1) {
+            if (cityInRange == city1 && currentTarget == city1) {
                 currentTarget = city2;
                 navAgent.GoToCity(city2);
-            } else if (citiesInRange[0] == city2 && currentTarget == city2){
+            } else if (cityInRange == city2 && currentTarget == city2){
                 currentTarget = city1;
                 navAgent.GoToCity(city1);
             }
