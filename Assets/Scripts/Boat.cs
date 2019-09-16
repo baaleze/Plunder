@@ -7,7 +7,7 @@ public class Boat : MonoBehaviour
     public Canvas canvas;
     public City cityInRange;
     private UiManager uiManager;
-    private int gold;
+    public int gold;
     private int[] stock = new int[5];
 
     // Start is called before the first frame update
@@ -32,14 +32,14 @@ public class Boat : MonoBehaviour
     public void addCityInRange(City city) {
         if (cityInRange == null) {
             cityInRange = city;
-            uiManager?.updateCityInRange(city.GetName());
+            uiManager?.updateCityInRange(city);
         }
     }
 
     public void removeCityInRange(City city) {
         if (city == cityInRange) {
             cityInRange = null;
-            uiManager?.updateCityInRange("");
+            uiManager?.updateCityInRange(null);
         }
     }
 
@@ -60,6 +60,29 @@ public class Boat : MonoBehaviour
             stock[(int) resource] += quantity;
             return "OK";
         }
+    }
+
+    public string SellFromCityInRange(Common.Resource resource, int quantity) {
+        if (cityInRange == null){
+            return "NO CITY IN RANGE";
+        }
+        int cost = cityInRange.GetCost(resource) * quantity;
+        if (cityInRange.gold < cost) {
+            return "NOT ENOUGH GOLD";
+        } else if (stock[(int) resource] < quantity) {
+            return "NOT ENOUGH RESOURCE";
+        } else {
+            // OK
+            gold += cost;
+            cityInRange.gold -= cost;
+            cityInRange.AddResource(resource, quantity);
+            stock[(int) resource] -= quantity;
+            return "OK";
+        }
+    }
+
+    public int GetStock(Common.Resource r) {
+        return stock[(int) r];
     }
 
     // Update is called once per frame

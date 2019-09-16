@@ -43,7 +43,7 @@ public class City : MonoBehaviour
     
     void OnMouseOver() {
         if (Input.GetMouseButtonDown(0)) {
-            uiManager.updateCityInfo(GenerateCityInfo());
+            uiManager.SetSelectedCity(this);
         }
     }
 
@@ -94,15 +94,15 @@ public class City : MonoBehaviour
 
     
 
-    private string GenerateCityInfo()
+    public string GenerateCityInfo()
     {
         return cityName 
         + "\r\nGold: " + gold
-        + "\r\nstock[(int) Common.Resource.CRYSTAL]: " + stock[(int) Common.Resource.CRYSTAL]  + " (" + GetCost(Common.Resource.CRYSTAL) + " each)"
-        + "\r\nstock[(int) Common.Resource.WOOD]: " + stock[(int) Common.Resource.WOOD]  + " (" + GetCost(Common.Resource.WOOD) + " each)"
-        + "\r\nstock[(int) Common.Resource.FOOD]: " + stock[(int) Common.Resource.FOOD]  + " (" + GetCost(Common.Resource.FOOD) + " each)"
-        + "\r\nstock[(int) Common.Resource.ORE]: " + stock[(int) Common.Resource.ORE] + " (" + GetCost(Common.Resource.ORE) + " each)"
-        + "\r\nstock[(int) Common.Resource.TOOLS]: " + stock[(int) Common.Resource.TOOLS] + " (" + GetCost(Common.Resource.TOOLS) + " each)";
+        + "\r\nCrystals: " + stock[(int) Common.Resource.CRYSTAL]  + " (" + GetCost(Common.Resource.CRYSTAL) + " each)"
+        + "\r\nWood: " + stock[(int) Common.Resource.WOOD]  + " (" + GetCost(Common.Resource.WOOD) + " each)"
+        + "\r\nFood: " + stock[(int) Common.Resource.FOOD]  + " (" + GetCost(Common.Resource.FOOD) + " each)"
+        + "\r\nOre: " + stock[(int) Common.Resource.ORE] + " (" + GetCost(Common.Resource.ORE) + " each)"
+        + "\r\nTools: " + stock[(int) Common.Resource.TOOLS] + " (" + GetCost(Common.Resource.TOOLS) + " each)";
     }
 
     // Update is called once per frame
