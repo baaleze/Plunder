@@ -5,19 +5,19 @@ using UnityEngine.UI;
 
 public class UiManager : MonoBehaviour
 {
+    public GameObject cityInfoObj;
+    public GameObject buyMenuObj;
 
     Text cityInfo;
-    TradeDropDown buyDropdown;
-    TradeDropDown sellDropdown;
+    BuyingMenu buyingMenu;
     City selected;
     
 
     // Start is called before the first frame update
     void Start()
     {
-        cityInfo = GameObject.Find("CityInfo").GetComponent<Text>();
-        buyDropdown = GameObject.Find("BuyList").GetComponent<TradeDropDown>();
-        sellDropdown = GameObject.Find("SellList").GetComponent<TradeDropDown>();
+        cityInfo = cityInfoObj.GetComponent<Text>();
+        buyingMenu = buyMenuObj.GetComponent<BuyingMenu>();
     }
 
     public void updateCityInfo(string text) {
@@ -34,8 +34,7 @@ public class UiManager : MonoBehaviour
 
     public void updateCityInRange(City city) {
         // TODO make buy / sale menu
-        buyDropdown.SetCity(city);
-        sellDropdown.SetCity(city);
+        buyingMenu.SetCity(city);
     }
 
     // Update is called once per frame

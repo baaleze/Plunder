@@ -3,6 +3,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class City : MonoBehaviour
 {
@@ -14,7 +15,10 @@ public class City : MonoBehaviour
 
     private UiManager uiManager;
     private string cityName;
-
+    private UnityEvent resourceTick = new UnityEvent();
+    private float timeSinceLastTick = 0f;
+    // tick every 10 sec
+    private const float tickTime = 10;
     public bool producesCrystal;
     public bool producesWood;
     public bool producesFood;
@@ -47,6 +51,14 @@ public class City : MonoBehaviour
         }
     }
 
+    public void ListenToResourceTick(UnityAction callback) {
+        resourceTick.AddListener(callback);
+    }
+
+    public void StopListeningToResourceTick(UnityAction callback) {
+        resourceTick.RemoveListener(callback);
+    }
+
     // resolve production and consommation
     private void TickResources() {
         // check needs and if ok produce
@@ -76,6 +88,8 @@ public class City : MonoBehaviour
             stock[(int) Common.Resource.ORE] -= rate;
             stock[(int) Common.Resource.CRYSTAL] += rate*6;
         }
+        // notify everyone
+        resourceTick.Invoke();
     }
 
     internal void AddResource(Common.Resource resource, int v)
@@ -108,6 +122,10 @@ public class City : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        timeSinceLastTick += Time.deltaTime;
+        if (timeSinceLastTick > tickTime) {
+            timeSinceLastTick -= tickTime;
+            TickResources();
+        }
     }
 }

@@ -9,6 +9,10 @@ public class SlideNumber : MonoBehaviour
     private Slider slider;
     private int cost;
     private int goldAvailable;
+    public int value{
+        get {return (int)slider.value;}
+        set {slider.value = value;}
+    }
     // Start is called before the first frame update
     void Start()
     {
