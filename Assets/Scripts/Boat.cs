@@ -43,41 +43,39 @@ public class Boat : MonoBehaviour
         }
     }
 
-    public string BuyFromCityInRange(Common.Resource resource, int quantity) {
+    public void BuyFromCityInRange(Common.Resource resource, int quantity) {
         if (cityInRange == null){
-            return "NO CITY IN RANGE";
+            throw new System.Exception("NO CITY IN RANGE");
         }
         int cost = cityInRange.GetCost(resource) * quantity;
         if (gold < cost) {
-            return "NOT ENOUGH GOLD";
+            throw new System.Exception("NOT ENOUGH GOLD");
         } else if (cityInRange.GetStock(resource) < quantity) {
-            return "NOT ENOUGH RESOURCE";
+            throw new System.Exception("NOT ENOUGH RESOURCE");
         } else {
             // OK
             gold -= cost;
             cityInRange.gold += cost;
             cityInRange.AddResource(resource, -quantity);
             stock[(int) resource] += quantity;
-            return "OK";
         }
     }
 
-    public string SellFromCityInRange(Common.Resource resource, int quantity) {
+    public void SellFromCityInRange(Common.Resource resource, int quantity) {
         if (cityInRange == null){
-            return "NO CITY IN RANGE";
+            throw new System.Exception("NO CITY IN RANGE");
         }
         int cost = cityInRange.GetCost(resource) * quantity;
         if (cityInRange.gold < cost) {
-            return "NOT ENOUGH GOLD";
+            throw new System.Exception("NOT ENOUGH GOLD");
         } else if (stock[(int) resource] < quantity) {
-            return "NOT ENOUGH RESOURCE";
+            throw new System.Exception("NOT ENOUGH RESOURCE");
         } else {
             // OK
             gold += cost;
             cityInRange.gold -= cost;
             cityInRange.AddResource(resource, quantity);
             stock[(int) resource] -= quantity;
-            return "OK";
         }
     }
 

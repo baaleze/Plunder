@@ -39,7 +39,10 @@ public class BuyingMenu : MonoBehaviour
         buySlider = buySliderObj.GetComponent<SlideNumber>();
         buyDropdown = buyList.GetComponent<Dropdown>();
         buyDropdown.onValueChanged.AddListener(newValue => {
-            buySlider.UpdateCost(city.GetCost(Common.ParseResource(buyDropdown.options[newValue].text)), boat.gold);
+            buySlider.UpdateCost(
+                city.GetCost(Common.ParseResource(buyDropdown.options[newValue].text)),
+                boat.gold,
+                true);
             buySlider.value = 0;
         });
         buyButton.onClick.AddListener(() => {
@@ -54,7 +57,10 @@ public class BuyingMenu : MonoBehaviour
         sellSlider = sellSliderObj.GetComponent<SlideNumber>();
         sellDropdown = sellList.GetComponent<Dropdown>();
         sellDropdown.onValueChanged.AddListener(newValue => {
-            sellSlider.UpdateCost(city.GetCost(Common.ParseResource(sellDropdown.options[newValue].text)), city.gold);
+            sellSlider.UpdateCost(
+                city.GetCost(Common.ParseResource(sellDropdown.options[newValue].text)),
+                boat.GetStock(Common.ParseResource(sellDropdown.options[newValue].text)),
+                false);
             sellSlider.value = 0;
         });
         sellButton.onClick.AddListener(() => {
@@ -81,8 +87,11 @@ public class BuyingMenu : MonoBehaviour
     }
 
     private void UpdateSliders(bool reset) {
-        buySlider.UpdateCost(city.GetCost(Common.ParseResource(buyDropdown.options[0].text)), boat.gold);
-        sellSlider.UpdateCost(city.GetCost(Common.ParseResource(sellDropdown.options[0].text)), city.gold);
+        buySlider.UpdateCost(city.GetCost(Common.ParseResource(buyDropdown.options[buyDropdown.value].text)), boat.gold, true);
+        sellSlider.UpdateCost(
+            city.GetCost(Common.ParseResource(sellDropdown.options[sellDropdown.value].text)),
+            boat.GetStock(Common.ParseResource(sellDropdown.options[sellDropdown.value].text)),
+            false);
         if (reset) {
             buySlider.value = 0;
             sellSlider.value = 0;

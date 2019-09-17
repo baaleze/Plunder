@@ -19,10 +19,15 @@ public class SlideNumber : MonoBehaviour
         slider = GetComponent<Slider>();
     }
 
-    public void UpdateCost(int newCost, int newGoldAvailable) {
+    public void UpdateCost(int newCost, int available, bool buying) {
         cost = newCost;
-        goldAvailable = newGoldAvailable;
-        slider.maxValue = Mathf.FloorToInt((float)newGoldAvailable / newCost);
+        if (buying) {
+            // can only buy what i have / what it costs
+            slider.maxValue = Mathf.FloorToInt((float)available / newCost);
+        } else {
+            // can only sell what I have
+            slider.maxValue = available;
+        }
     }
 
     // Update is called once per frame
