@@ -6,6 +6,7 @@ public class Common
 {
     private const float baseCost = 10f;
     private const float idealStock = 200f;
+    public const int baseBoatSpeed = 20;
     public enum Resource
     {
         FOOD = 0, WOOD = 1, ORE = 2, CRYSTAL = 3, TOOLS = 4

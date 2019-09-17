@@ -1270,7 +1270,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a1f72bba32599c41a87331b6d048e6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  v: 0
+  canvas: {fileID: 0}
+  angleDiff: 0
+  dir: 0
 --- !u!195 &7836481280367425421
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1282,7 +1284,7 @@ NavMeshAgent:
   m_AgentTypeID: 0
   m_Radius: 0.5
   m_Speed: 30
-  m_Acceleration: 10
+  m_Acceleration: 15
   avoidancePriority: 50
   m_AngularSpeed: 60
   m_StoppingDistance: 15
@@ -1305,8 +1307,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 301b222889e84b447a4d732012e05593, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  citiesInRange: []
   canvas: {fileID: 0}
+  cityInRange: {fileID: 0}
+  gold: 0
 --- !u!1 &7836481279656941714
 GameObject:
   m_ObjectHideFlags: 0
