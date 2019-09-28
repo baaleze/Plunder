@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &787368162230857989
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1125449072868340832}
+  m_Layer: 0
+  m_Name: SpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1125449072868340832
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 787368162230857989}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 2.5, y: 0, z: 0}
+  m_LocalScale: {x: 0.033333335, y: 0.033333335, z: 0.033333335}
+  m_Children: []
+  m_Father: {fileID: 8874740535154146019}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8874740535154146016
 GameObject:
   m_ObjectHideFlags: 0
@@ -31,6 +61,7 @@ Transform:
   m_LocalPosition: {x: 723.4, y: 5, z: 661}
   m_LocalScale: {x: 30, y: 30, z: 30}
   m_Children:
+  - {fileID: 1125449072868340832}
   - {fileID: 8874740536926658005}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -92,6 +123,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc5988382b463b948a4ecb68b3092d08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  npcBoatPrefab: {fileID: 171456654902367328, guid: 4238824e5727cc04b9a53a63edbc5695,
+    type: 3}
+  debugFlag: {fileID: 8701132883258053987, guid: 51d5e8895720e8196a1f97bc2ae384be,
+    type: 3}
 --- !u!65 &8874740535154146030
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -134,7 +169,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8874740535154146019}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!135 &8874740536926658004
 SphereCollider:

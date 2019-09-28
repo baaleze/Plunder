@@ -13,7 +13,7 @@ public class UiManager : MonoBehaviour
     City selected;
     int windDir = 0;
     float timeSinceWindChange = 0;
-    private const float windChangeTime = 5;
+    private const float windChangeTime = 30;
     
     public int Wind {
         get {return windDir;}

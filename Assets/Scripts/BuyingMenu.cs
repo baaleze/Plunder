@@ -46,7 +46,7 @@ public class BuyingMenu : MonoBehaviour
             buySlider.value = 0;
         });
         buyButton.onClick.AddListener(() => {
-            boat.BuyFromCityInRange(buyList.GetSelectedResource(), (int) buySlider.value);
+            boat.BuyFromCityInRange(buyList.GetSelectedResource(), buySlider.value);
             buySlider.value = 0;
         });
 
@@ -64,7 +64,7 @@ public class BuyingMenu : MonoBehaviour
             sellSlider.value = 0;
         });
         sellButton.onClick.AddListener(() => {
-            boat.SellFromCityInRange(sellList.GetSelectedResource(), (int) sellSlider.value);
+            boat.SellFromCityInRange(sellList.GetSelectedResource(), sellSlider.value);
             sellSlider.value = 0;
         });
 
@@ -79,7 +79,7 @@ public class BuyingMenu : MonoBehaviour
             gameObject.SetActive(true);
             // select first resource as default
             UpdateSliders(true);
-        } else {
+        } else if (city != null) {
             city.StopListeningToResourceTick(tickCallback);
             gameObject.SetActive(false);
             city = null;

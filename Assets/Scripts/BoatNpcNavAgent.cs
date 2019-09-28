@@ -6,18 +6,18 @@ using UnityEngine.AI;
 public class BoatNpcNavAgent : MonoBehaviour
 {
     NavMeshAgent agent;
-    public Canvas canvas;
     
     private static UiManager uiManager;
     void Awake() {
         if (uiManager == null){
-            uiManager = canvas.GetComponent<UiManager>();
+            uiManager = GameObject.Find("UiCanvas").GetComponent<UiManager>();
         }
+        agent = GetComponent<NavMeshAgent>();        
     }
     // Start is called before the first frame update
     void Start()
     {
-        agent = GetComponent<NavMeshAgent>();        
+        
     }
 
     public void GoToCity(City c) {
@@ -25,6 +25,10 @@ public class BoatNpcNavAgent : MonoBehaviour
         NavMeshHit hit;
         NavMesh.SamplePosition(c.gameObject.transform.position, out hit, 4, -1);
         agent.destination = hit.position;
+    }
+
+    public void GoTo(Vector3 pos) {
+        agent.destination = pos;
     }
 
     private float WindFactor() {

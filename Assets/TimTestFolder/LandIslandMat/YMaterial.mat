@@ -1,0 +1,74 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: YMaterial
+  m_Shader: {fileID: 4800000, guid: d73d22f382faa5f4a9cc7a49be85a2b1, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _Grass:
+        m_Texture: {fileID: 2800000, guid: 8104d96a9e066d84ab9983bd97e11abd, type: 3}
+        m_Scale: {x: 0.3, y: 0.3}
+        m_Offset: {x: 0, y: 0}
+    - _Grassheight:
+        m_Texture: {fileID: 2800000, guid: 7339ac558c573a6408856d331b2a51a3, type: 3}
+        m_Scale: {x: 20, y: 20}
+        m_Offset: {x: 0, y: 0}
+    - _Rock:
+        m_Texture: {fileID: 2800000, guid: f51f14956aa15ea41b62a6555ea0654b, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _RockHeightmap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TextureSample0:
+        m_Texture: {fileID: 2800000, guid: 740e96e5b465a5649bc3c3bd258fa736, type: 3}
+        m_Scale: {x: 0.3, y: 0.3}
+        m_Offset: {x: 0, y: 0}
+    - _TextureSample1:
+        m_Texture: {fileID: 2800000, guid: 8104d96a9e066d84ab9983bd97e11abd, type: 3}
+        m_Scale: {x: 0.3, y: 0.3}
+        m_Offset: {x: 0, y: 0}
+    - _TextureSample2:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TopTexture0:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _rockForestAlpha:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _rockHeight:
+        m_Texture: {fileID: 2800000, guid: 52d319e16df91ce41bd135724c647e12, type: 3}
+        m_Scale: {x: 20, y: 20}
+        m_Offset: {x: 0, y: 0}
+    - _texcoord:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _Float0: 2.67
+    - _Float1: -0.32
+    - _Float2: 0.53
+    - _Float3: 2.47
+    - _Float4: 1
+    - __dirty: 0
+    m_Colors:
+    - _Color0: {r: 0.16656284, g: 0.16723034, b: 0.1792453, a: 0}
